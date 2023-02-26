@@ -7,34 +7,30 @@ Projeto de uma API para cadastro e controle de cadastro de clinicas dentarias
   - Atualizar
   - Apagar 
   - [Listar todos](#listar-todos-usuarios)
-  - [Pegar pelo id](#listar-usuario-pelo-id)
-  - Detalhes
+  - [Detalhes](#listar-usuario-pelo-id)
   
 - __Consulta__ 
   - [Cadastrar](#cadastrar-consulta)
   - Atualizar
   - Apagar 
   - [Listar todos](#listar-todas-consultas)
-  - [Pegar pelo id](#listar-consulta-pelo-id)
-  - Pegar pelo id do cliente
-  - Pegar pelo id da clinica
-  - Detalhes
+  - [Detalhes](#listar-consulta-pelo-id)
+  - [Pegar pelo id do cliente](#listar-todas-consultas-pelo-cliente)
+  - [Pegar pelo id da clinica](#listar-todas-consultas-pela-clinica)
   
 - __Clinica(s)__
-  - Cadastrar
+  - [Cadastrar](#cadastrar-clinica)
   - Atualizar
   - Apagar
-  - Listar todas
-  - Pegar pelo id
-  - Detalhes
+  - [Listar todas](#listar-todas-clinicas)
+  - [Detalhes](#listar-clinica-pelo-id)
   
 - __Endereço__
-  - Cadastrar
+  - [Cadastrar](#cadastrar-endereço)
   - Atualizar
   - Apagar 
-  - Listar todos
-  - Pegar pelo id
-  - Detalhes
+  - [Listar todos](#listar-todos-endereços)
+  - [Detalhes](#listar-endereço-pelo-id)
   
 ## Cadastrar usuario
 `POST`      /identedade/api/usuario
@@ -189,7 +185,7 @@ __Resposta__
 
 ## Listar todas consultas
 
-`GET` identedade/api/usuario
+`GET` identedade/api/consulta
 
 __Exemplo de resposta__
 
@@ -222,3 +218,239 @@ __Resposta__
 |--------|----------
 |200| os dados foram retornados
 |404| endereço não encontrado
+
+
+## Listar todas consultas pelo cliente
+
+`GET` identedade/api/consulta/cliente/{id}
+
+__Exemplo de resposta__
+
+```js
+{
+  {
+    cd_consulta: 1,
+    cd_usuario: 1,
+    cd_clinica: 1,
+    dt_consulta: '2023-12-27',
+    nm_medico: 'José da silva',
+    ds_consulta: 'arrumar o aparelho',
+    vl_preco: 385.00
+  }
+  {
+    cd_consulta: 45,
+    cd_usuario: 1,
+    cd_clinica: 1,
+    dt_consulta: '2023-12-24',
+    nm_medico: 'José da silva',
+    ds_consulta: 'Limpeza de dente',
+    vl_preco: 157.50
+  }
+}
+```
+
+__Resposta__
+
+| código | descrição 
+|--------|----------
+|200| os dados foram retornados
+|404| id do cliente não foi encontrado
+
+
+## Listar todas consultas pela clinica
+
+`GET` identedade/api/consulta/clinica/{id}
+
+__Exemplo de resposta__
+
+```js
+{
+  {
+    cd_consulta: 87,
+    cd_usuario: 2,
+    cd_clinica: 1,
+    dt_consulta: '2023-12-27',
+    nm_medico: 'José da silva',
+    ds_consulta: 'arrumar o aparelho',
+    vl_preco: 385.00
+  }
+  {
+    cd_consulta: 454,
+    cd_usuario: 32,
+    cd_clinica: 1,
+    dt_consulta: '2023-12-24',
+    nm_medico: 'José da silva',
+    ds_consulta: 'Limpeza de dente',
+    vl_preco: 157.50
+  }
+}
+```
+
+__Resposta__
+
+| código | descrição 
+|--------|----------
+|200| os dados foram retornados
+|404| id da clinica não foi encontrado
+
+
+## Cadastrar Clinica
+`POST`      /identedade/api/clinica
+
+__Campos de requisição__
+| campo | tipo | obrigatório | descrição
+|-------|------|:-------------:|----------
+|cd_clinica|inteiro|SIM|primary key da clinica
+|nm_clinica|texto|SIM|nome da clinica na API
+|ds_email|texto|SIM|email para contato e login na API
+|ds_senha|texto|SIM|senha para login na API
+
+__Exemplo de requisição__
+```js
+{
+    cd_clinica: 1,
+    nm_clinica: 'Sorriso branco',
+    ds_email: 'contato@sorrisobranco.com.br',
+    ds_senha: '@RT453sdwxa89!!@'
+}
+```
+
+__Resposta__
+
+| código | descrição 
+|--------|----------
+|201| a clinica foi cadastrada com sucesso
+|400| campos inválidos
+
+## Listar todas clinicas
+`GET` identedade/api/clinicas
+
+__Exemplo de resposta__
+
+```js
+{
+  {
+      cd_clinica: 1,
+      nm_clinica: 'Sorriso branco',
+      ds_email: 'contato@sorrisobranco.com.br',
+      ds_senha: '@RT453sdwxa89!!@'
+  }
+  {
+      cd_clinica: 2,
+      nm_clinica: 'Sorriso colgate',
+      ds_email: 'contato@sorrisocolgate.com.br',
+      ds_senha: '@#$578dawdFGVCX15'
+  }
+}
+```
+
+__Resposta__
+
+| código | descrição 
+|--------|----------
+|200| os dados foram retornados
+|404| endereço não encontrado
+
+
+## Listar clinica pelo id
+`GET` identedade/api/clinicas/{id}
+
+__Exemplo de resposta__
+
+```js
+{
+  cd_clinica: 1,
+  nm_clinica: 'Sorriso branco',
+  ds_email: 'contato@sorrisobranco.com.br',
+  ds_senha: '@RT453sdwxa89!!@'
+}
+```
+
+__Resposta__
+
+| código | descrição 
+|--------|----------
+|200| os dados foram retornados
+|404| Não foi encontrado clinica com esse id
+
+## Cadastrar endereço
+`POST`      /identedade/api/endereco
+
+__Campos de requisição__
+| campo | tipo | obrigatório | descrição
+|-------|------|:-------------:|----------
+|cd_clinica|inteiro|SIM|Foreign key e Primary key vinda da entidade clinica
+|ds_logradouro|texto|SIM|Logradouro do endereço onde a clinica está
+|ds_estado|texto|SIM|estado onde a clinica está em UF (ex: SP, RJ)
+|nr_numero|inteiro|SIM|numero onde a clinca está
+
+__Exemplo de requisição__
+```js
+{
+  cd_clinica: 2,
+  ds_logradouro: 'R. Alvares Cunha 158',
+  ds_bairro: 'zeca pagodinho bairro',
+  ds_estado: 'ES',
+  nr_numero: 157
+}
+```
+
+__Resposta__
+
+| código | descrição 
+|--------|----------
+|201| o usuario foi cadastrada com sucesso
+|400| campos inválidos
+
+## Listar todos endereços
+`GET` identedade/api/endereco
+
+__Exemplo de resposta__
+
+```js
+{
+  {
+    cd_clinica: 2,
+    ds_logradouro: 'R. Alvares Cunha 158',
+    ds_bairro: 'zeca pagodinho bairro',
+    ds_estado: 'ES',
+    nr_numero: 157
+  }
+  {
+    cd_clinica: 4,
+    ds_logradouro: 'R. Alvares Pereira 158',
+    ds_bairro: 'frajola bairro',
+    ds_estado: 'SP',
+    nr_numero: 187
+  }
+}
+```
+
+__Resposta__
+
+| código | descrição 
+|--------|----------
+|200| os dados foram retornados
+|404| URL não encontrada
+
+## Listar endereço pelo id
+`GET` identedade/api/endereco/{id}
+
+__Exemplo de resposta__
+
+```js
+{
+  cd_clinica: 2,
+  ds_logradouro: 'R. Alvares Cunha 158',
+  ds_bairro: 'zeca pagodinho bairro',
+  ds_estado: 'ES',
+  nr_numero: 157
+}
+```
+
+__Resposta__
+
+| código | descrição 
+|--------|----------
+|200| os dados foram retornados
+|404| Não foi encontrado nenhum endereço com esse ID
