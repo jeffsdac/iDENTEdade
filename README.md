@@ -4,15 +4,15 @@ Projeto de uma API para cadastro e controle de cadastro de clinicas dentarias
 ## Endpoints
 - __Usuario__
   - [Cadastrar](#cadastrar-usuario)
-  - Atualizar
-  - Apagar 
+  - [Atualizar](#atualizar-usuario)
+  - [Apagar](#apagar-usuario) 
   - [Listar todos](#listar-todos-usuarios)
   - [Detalhes](#listar-usuario-pelo-id)
   
 - __Consulta__ 
   - [Cadastrar](#cadastrar-consulta)
-  - Atualizar
-  - Apagar 
+  - [Atualizar](#atualizar-consulta)
+  - [Apagar](#deletar-consulta) 
   - [Listar todos](#listar-todas-consultas)
   - [Detalhes](#listar-consulta-pelo-id)
   - [Pegar pelo id do cliente](#listar-todas-consultas-pelo-cliente)
@@ -20,15 +20,15 @@ Projeto de uma API para cadastro e controle de cadastro de clinicas dentarias
   
 - __Clinica(s)__
   - [Cadastrar](#cadastrar-clinica)
-  - Atualizar
-  - Apagar
+  - [Atualizar](#atualizar-clinica)
+  - [Apagar](#apagar-clinica)
   - [Listar todas](#listar-todas-clinicas)
   - [Detalhes](#listar-clinica-pelo-id)
   
 - __Endereço__
   - [Cadastrar](#cadastrar-endereço)
-  - Atualizar
-  - Apagar 
+  - [Atualizar](#atualizar-endereco)
+  - [Apagar](#apagar-endereco)
   - [Listar todos](#listar-todos-endereços)
   - [Detalhes](#listar-endereço-pelo-id)
   
@@ -88,6 +88,37 @@ __Resposta__
 |200| os dados foram retornados
 |404| não foi  encontrado usuario com esse ID
 
+## Atualizar usuario
+`PUT` identedade/api/usuario/{id}
+
+__Exemplo de requisição__
+```js
+{
+    cd_usuario: 1,
+    nm_usuario: 'Jefferson',
+    dt_nascimento: '1999-12-27',
+    ds_email: 'email@email.com',
+    ds_senha: '@mor575546848',
+    nr_telefone: 11954089999
+}
+```
+__Resposta__
+
+| código | descrição 
+|--------|----------
+|200| os dados foram retornados
+|404| não foi  encontrado usuario com esse ID
+
+
+## Apagar usuario
+`DELETE` identedade/api/usuario/{id}
+
+__Resposta__
+
+| código | descrição 
+|--------|----------
+|204| no-content
+|404| não foi  encontrado usuario com esse ID
 
 ## Listar todos usuarios
 
@@ -158,6 +189,38 @@ __Resposta__
 |201| a consulta foi cadastrada com sucesso
 |400| campos inválidos
   
+## Atualizar consulta
+`PUT` identedade/api/consulta/{id}
+
+__Exemplo de requisição__
+```js
+{
+  cd_consulta: 1,
+  cd_usuario: 1,
+  cd_clinica: 1,
+  dt_consulta: '2023-12-27',
+  nm_medico: 'José da silva',
+  ds_consulta: 'arrumar o aparelho',
+  vl_preco: 385.00
+}
+```
+__Resposta__
+
+| código | descrição 
+|--------|----------
+|200| os dados foram retornados
+|404| não foi  encontrado consulta com esse ID
+
+## Deletar consulta
+`DELETE` identedade/api/consulta/{id}
+
+__Resposta__
+
+| código | descrição 
+|--------|----------
+|204| no-content
+|404| não foi  encontrado consulta com esse ID
+
 ## Listar consulta pelo id
 
 `GET` identedade/api/consulta/{id}
@@ -322,6 +385,37 @@ __Resposta__
 |201| a clinica foi cadastrada com sucesso
 |400| campos inválidos
 
+## Atualizar clinica
+`PUT` identedade/api/clinica/{id}
+
+__Exemplo de requisição__
+```js
+{
+    cd_clinica: 1,
+    nm_clinica: 'Sorriso branco',
+    ds_email: 'contato@sorrisobranco.com.br',
+    ds_senha: '@RT453sdwxa89!!@'
+}
+```
+__Resposta__
+
+| código | descrição 
+|--------|----------
+|200| os dados foram retornados
+|404| não foi  encontrado clinica com esse ID
+
+
+## Apagar clinica
+`DELETE` identedade/api/clinica/{id}
+
+__Resposta__
+
+| código | descrição 
+|--------|----------
+|204| no-content
+|404| não foi  encontrado clinica com esse ID
+
+
 ## Listar todas clinicas
 `GET` identedade/api/clinicas
 
@@ -401,6 +495,37 @@ __Resposta__
 |--------|----------
 |201| o usuario foi cadastrada com sucesso
 |400| campos inválidos
+
+## Apagar endereco
+`DELETE` identedade/api/endreco/{id}
+
+__Resposta__
+
+| código | descrição 
+|--------|----------
+|204| no-content
+|404| não foi  encontrado endereco com esse ID
+
+
+## Atualizar endereco
+`PUT` identedade/api/endereco/{id}
+
+__Exemplo de requisição__
+```js
+{
+  cd_clinica: 2,
+  ds_logradouro: 'R. Alvares Cunha 158',
+  ds_bairro: 'zeca pagodinho bairro',
+  ds_estado: 'ES',
+  nr_numero: 157
+}
+```
+__Resposta__
+
+| código | descrição 
+|--------|----------
+|200| os dados foram retornados
+|404| não foi  encontrado endereco com esse ID
 
 ## Listar todos endereços
 `GET` identedade/api/endereco
